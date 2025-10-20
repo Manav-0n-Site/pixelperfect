@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelPerfect | AI Photo Enhancer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Vector Background Elements -->
+    <div class="vector vector-1"></div>
+    <div class="vector vector-2"></div>
+    <div class="vector vector-3"></div>
+    <div class="vector vector-4"></div>
+
+    <div class="container">
+        <div class="header" data-aos="fade-down">
+            <div class="logo">
+                <i class="fas fa-magic logo-icon"></i>
+            </div>
+            <h1>PixelPerfect Enhancer</h1>
+            <p>Transform your photos with AI-powered enhancement technology</p>
+        </div>
+        
+        <div class="app-container">
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea" data-aos="fade-right">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <p class="upload-text">Drag & Drop your image here</p>
+                    <p class="upload-subtext">Supports JPG, PNG, WEBP (Max 10MB)</p>
+                    <button class="upload-btn" id="uploadBtn">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </button>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="features" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <i class="fas fa-bolt feature-icon"></i>
+                        <h3 class="feature-title">AI Enhancement</h3>
+                        <p class="feature-desc">Smart algorithms enhance image quality automatically</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-expand-arrows-alt feature-icon"></i>
+                        <h3 class="feature-title">Upscale Resolution</h3>
+                        <p class="feature-desc">Increase image size without losing quality</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-sliders-h feature-icon"></i>
+                        <h3 class="feature-title">Fine Control</h3>
+                        <p class="feature-desc">Adjust every aspect of your enhancement</p>
+                    </div>
+                </div>
+
+                <div class="presets" data-aos="fade-up" data-aos-delay="400">
+                    <button class="preset-btn" data-preset="portrait">
+                        <i class="fas fa-user"></i> Portrait
+                    </button>
+                    <button class="preset-btn" data-preset="landscape">
+                        <i class="fas fa-mountain"></i> Landscape
+                    </button>
+                    <button class="preset-btn" data-preset="vintage">
+                        <i class="fas fa-camera-retro"></i> Vintage
+                    </button>
+                    <button class="preset-btn" data-preset="bw">
+                        <i class="fas fa-moon"></i> B&W
+                    </button>
+                    <button class="preset-btn" data-preset="vibrant">
+                        <i class="fas fa-palette"></i> Vibrant
+                    </button>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <div class="preview-header" data-aos="fade-left">
+                    <h2 class="preview-title">Preview</h2>
+                    <span class="ai-badge"><i class="fas fa-robot"></i> AI Powered</span>
+                </div>
+                
+                <div class="preview-container">
+                    <div class="preview-box" data-aos="flip-left" data-aos-delay="100">
+                        <span class="preview-label">Original Image</span>
+                        <div class="preview-img" id="originalPreview">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                    <div class="preview-box" data-aos="flip-right" data-aos-delay="200">
+                        <span class="preview-label">Enhanced Image</span>
+                        <div class="preview-img" id="enhancedPreview">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quality-indicator" data-aos="fade-up" data-aos-delay="300">
+                    <span class="quality-label">Estimated Quality Improvement</span>
+                    <span class="quality-value" id="qualityValue">+0%</span>
+                </div>
+
+                <div class="stats-container" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-card">
+                        <div class="stat-value" id="resolutionValue">0 MP</div>
+                        <div class="stat-label">Resolution</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="fileSizeValue">0 KB</div>
+                        <div class="stat-label">File Size</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="enhancementTime">0s</div>
+                        <div class="stat-label">Enhancement Time</div>
+                    </div>
+                </div>
+                
+                <div class="enhancement-options" data-aos="fade-up" data-aos-delay="500">
+                    <h3 class="options-title"><i class="fas fa-sliders-h"></i> Enhancement Controls</h3>
+                    <div class="options-grid">
+                        <div class="option-item">
+                            <div class="option-header">
+                                <span class="option-label">Sharpness</span>
+                                <span class="option-value" id="sharpnessValue">50%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="100" value="50" class="slider" id="sharpness">
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-header">
+                                <span class="option-label">Brightness</span>
+                                <span class="option-value" id="brightnessValue">50%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="100" value="50" class="slider" id="brightness">
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-header">
+                                <span class="option-label">Contrast</span>
+                                <span class="option-value" id="contrastValue">50%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="100" value="50" class="slider" id="contrast">
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-header">
+                                <span class="option-label">Saturation</span>
+                                <span class="option-value" id="saturationValue">50%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="100" value="50" class="slider" id="saturation">
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-header">
+                                <span class="option-label">Noise Reduction</span>
+                                <span class="option-value" id="noiseValue">50%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="100" value="50" class="slider" id="noise">
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-header">
+                                <span class="option-label">Upscaling</span>
+                                <span class="option-value" id="upscaleValue">100%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" min="100" max="200" value="100" class="slider" id="upscale">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn enhance-btn" id="enhanceBtn" data-aos="zoom-in" data-aos-delay="600">
+                        <i class="fas fa-bolt"></i> Enhance Image
+                    </button>
+                    <button class="action-btn download-btn" id="downloadBtn" disabled data-aos="zoom-in" data-aos-delay="700">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button class="action-btn share-btn" id="shareBtn" data-aos="zoom-in" data-aos-delay="800">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="action-btn compare-btn" id="compareBtn" data-aos="zoom-in" data-aos-delay="900">
+                        <i class="fas fa-columns"></i> Compare
+                    </button>
+                    <button class="action-btn reset-btn" id="resetBtn" data-aos="zoom-in" data-aos-delay="1000">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="credits" data-aos="fade-up">
+            <p>Designed and developed with ❤️ by <strong>Manav</strong></p>
+        </div>
+    </div>
+
+    <!-- Compare Overlay -->
+    <div class="compare-overlay" id="compareOverlay">
+        <div class="compare-container">
+            <button class="close-compare" id="closeCompare">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Compare Images</h2>
+            <div class="compare-images">
+                <div class="compare-box">
+                    <h3>Original</h3>
+                    <img class="compare-img" id="compareOriginal" src="" alt="Original">
+                </div>
+                <div class="compare-box">
+                    <h3>Enhanced</h3>
+                    <img class="compare-img" id="compareEnhanced" src="" alt="Enhanced">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
